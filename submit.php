@@ -18,12 +18,23 @@ $total = $_POST["form_total"];
 
 $orderdata = $_POST["form_orderdata"];
 
+$email = $_POST["email"];
 
-$stmt = $conn->prepare("INSERT INTO Orders (total, orderdata) VALUES (?, ?)");
-$stmt->bind_param("ds", $db_total, $db_orderdata);
+if ( strlen($email) > 0 ) {
+
+$message = "Your total order price is £" . $total . "\n\n Here are your order details \n\n " . $orderdata;
+
+// Send
+// mail($email, 'Here is the receipt for your order', $message);
+    
+}
+
+$stmt = $conn->prepare("INSERT INTO Orders (total, orderdata, email) VALUES (?, ?, ?)");
+$stmt->bind_param("dss", $db_total, $db_orderdata, $db_email);
 
 $db_total = $total;
 $db_orderdata = $orderdata;
+$db_email = $email;
 
 $stmt->execute();
 $stmt->close();
