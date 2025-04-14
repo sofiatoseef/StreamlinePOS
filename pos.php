@@ -58,8 +58,12 @@ $conn->close();
 <head>
     <title>Streamline POS</title>
     
+       <div style="text-align: center; font-size: 32px; font-weight: bold; padding: 20px; background-color: #fffbe6; border-bottom: 2px solid #ccc;">
+        Welcome to Streamline POS
+    </div>
+    
     <style>
-        /* General styling */
+   
         body {
             font-family: Arial, sans-serif;
             margin: 50;
@@ -79,12 +83,14 @@ $conn->close();
             padding: 15px;
             text-align: center;
             cursor: pointer;
-            background-color: #e0f7fa;
+            background-color: #FDF6E3;
             border: 1px solid #ccc;
+            font-weight: bold;
+                font-size: large;
         }
         
         td:hover {
-            background-color: #80deea;
+            background-color: #FDF6A1;
         }
         
         /* Order table */
@@ -147,7 +153,7 @@ $conn->close();
             
             function show(category_id) {
                 
-                var i = 1;
+                var i = 0;
                 var how_many_categories = 8;
                 
                 while (i <= how_many_categories) {
@@ -166,7 +172,7 @@ $conn->close();
                     i++;
                 }
                 
-                if (category_id == 8) { // when submit order is pressed
+                if (category_id == 0) { // when submit order is pressed
                     
                     document.getElementById("change").innerHTML = "0.00";
                     document.getElementById("tenderbox").value = "";
@@ -252,7 +258,7 @@ document.getElementById("totalPrice2").innerHTML = total.toFixed(2);
                 
                     <?php echo($items_html); ?>
                     
-<div align="center" id="catTable8" style="display:none;">
+<div align="center" id="catTable0" style="display:none;">
 <form action="submit.php" method="post">
     <input type="hidden" value="" id="form_total" name="form_total"/>
     <input type="hidden" value="" id="form_orderdata" name="form_orderdata"/>
@@ -264,11 +270,15 @@ document.getElementById("totalPrice2").innerHTML = total.toFixed(2);
     </tr>
         
     <tr>
-    <td>Tender </td><td> <input type="text" size="10" id="tenderbox" onkeyup="tender(this.value)" style="text-align:center;"> </td>
+    <td>Tender </td><td> <input type="text" size="20" id="tenderbox" onkeyup="tender(this.value)" style="text-align:center;"> </td>
     </tr>
     
     <tr>
     <td>Change </td><td> £<span id="change">0.00</span></td>
+    </tr>
+    
+    <tr>
+    <td>Email for Receipt</td><td> <input type="email" size="20" id="email" name="email" style="text-align:center;"> </td>
     </tr>
 
     <tr>
@@ -297,7 +307,7 @@ document.getElementById("totalPrice2").innerHTML = total.toFixed(2);
                                             <td>Total £<span id="totalPrice">0.00</span></td>
                                         </tr>
                                         
-                                        <tr onclick="show(8)">
+                                        <tr onclick="show(0)">
                                             <td>Submit Order</td>
                                         </tr>
                         
